@@ -46,6 +46,7 @@ getValues <- function(name, quals, stop.on.error = TRUE) {
     url <- gsub(" ", "%20", url)
     
     x <- getURL(url, .opts = list(ssl.verifypeer = FALSE))
+    x <- gsub("'", "", x)
     x <- suppressWarnings(read.table(text = x, sep="\t", colClasses = "character"))
     
     if(ncol(x) == 1) {

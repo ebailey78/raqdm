@@ -150,10 +150,10 @@ getParameters <- function() {
                              ln[i], "\", pady = 3)")))
     # Create input widgets
     if(ty[i] == "text") {
-      eval(parse(text = paste0("e.", n[i], " <- tkentry(tt, width = 50, 
+      eval(parse(text = paste0("e.", n[i], " <- tkentry(tt, width = 85, 
                              textvariable = v.", n[i], ", validate=\"focusout\", validatecommand = function() updateEntry(\"", n[i], "\"))")))
     } else if(ty[i] == "combo") {
-      eval(parse(text = paste0("e.", n[i], " <- ttkcombobox(tt, width = 47, 
+      eval(parse(text = paste0("e.", n[i], " <- ttkcombobox(tt, width = 82, 
                              values = getComboList(n[i]),
                              state = \"readonly\", textvariable = v.", n[i], ")")))
     } else if(ty[i] == "check") {
@@ -176,6 +176,10 @@ getParameters <- function() {
     tkgrid.configure(eval(parse(text = paste0("e.", n[i]))), sticky="w")
     
   }
+  
+  cbSwitch("county", "state")
+  cbSwitch("site", c("state", "county"))
+  cbSwitch("param", "pc")
   
   go <- function() {
     if(validateRequest()) {

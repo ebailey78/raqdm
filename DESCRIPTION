@@ -1,9 +1,10 @@
 Package: raqdm
 Type: Package
-Title: What the package does (short line)
-Version: 1.0
-Date: 2013-12-02
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Title: Access U.S. EPA Air Quality Data
+Version: 0.1
+Date: 2013-11-18
+Author: Eric Bailey
+Maintainer: Eric Bailey <ebailey@idem.in.gov>
+Description: Provides an interface to import data into R from U.S. EPA's Air Quality Data Mart
+Depends: RCurl, tcltk
+License: GPL-2

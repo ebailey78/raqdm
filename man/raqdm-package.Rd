@@ -3,38 +3,29 @@
 \alias{raqdm}
 \docType{package}
 \title{
-What the package does (short line)
-~~ package title ~~
+Access to U.S. EPA's Air Quality Data Mart
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+Provides a direct interface to U.S. EPA's Air Quality Data Mart through use of its Query Air Data (QAD) web query interface. Allows for manual data queries as well as GUI-directed data queries.
 }
 \details{
 \tabular{ll}{
 Package: \tab raqdm\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
-Date: \tab 2013-12-02\cr
+Date: \tab 2013-11-22\cr
 License: \tab What license is it under?\cr
 }
-~~ An overview of how to use the package, including the most important functions ~~
+  Main functionality it...
 }
 \author{
-Who wrote it
-
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Eric Bailey
+Maintainer: Eric Bailey <ebailey@idem.in.gov>
 }
 \references{
-~~ Literature or other references for background information ~~
+\href{http://www.epa.gov/airdata/toc.html}{Query Air Data (QAD) User's Guide}
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
 \keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
 \examples{
-~~ simple examples of the most important functions ~~
+#Coming Soon
 }
