@@ -1,6 +1,3 @@
-source("./R/pkg-internal.R")
-source("./R/defaults.R")
-
 getParameters <- function() {
   
   params <- get("default.params", cache)
@@ -29,6 +26,8 @@ getParameters <- function() {
     } else if(tclvalue(v.bdate) == "" | tclvalue(v.edate) == "") {
       valid = FALSE
       tkmessageBox(message = "Please provide a begin date and an end datv.")
+    } else if(tclvalue(v.bdate) > tclvalue(v.edate)) {
+      tkmessageBox(message = "The End Date should be after the Begin Date.")
     } else if(tclvalue(v.pc) == "" & tclvalue(v.param) == "") {
       valid = FALSE
       tkmessageBox(message = "Either a parameter class or a parameter code is required.")
