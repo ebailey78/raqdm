@@ -1,3 +1,26 @@
+# Function for making a raWDataNotify request to AQDM.
+requestAQDM <- function(x) {
+  
+  if(missing(x)) x = getParameters()
+  
+  if(length(x) > 0) {
+    
+    y <- getForm("https://ofmext.epa.gov/AQDMRS/ws/rawDataNotify", .params=x,
+                 .opts = list(ssl.verifypeer = FALSE))
+    url <- paste0("https://oasext.epa.gov/AQDM/AQDM_", y, ".txt")
+    class(y) <- "aqdmrequest"
+    
+    attr(y, "url") <- url
+    attr(y, "params") <- x
+    y  
+    
+  } else {
+    stop("No query parameters provided.")
+  }
+  
+}
+
+# Function for making a rawData request to AQDM or retrieving a previously submitted rawDataNotify request.
 importAQDM <- function(x) {
   
   if(missing(x)) x = getParameters()
