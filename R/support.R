@@ -1,3 +1,4 @@
+# Returns list of default parameters
 getDefault <- function(param) {
   
   dp <- get("default.params", cache)
@@ -5,7 +6,8 @@ getDefault <- function(param) {
   
 }
 
-setDefault <- function(x) {
+# Sets default parameters based on names list 'x'
+setDefaults <- function(x) {
   
   dp <- get("default.params", cache)
   
@@ -15,6 +17,26 @@ setDefault <- function(x) {
     
   }
   
+  assign("default.params", dp, envir=cache)
+  
+}
+
+# Resets default parameters. 'x' can be a vector of parameters names that 
+# should be reset or if missing all defaults are reset.
+clearDefaults <- function(x) {
+  
+  dp <- get("default.params", cache)
+  
+  if(missing(x)) {
+    for(n in names(dp)) {
+      dp[n] <- ""
+    }
+  } else {
+    for(p in x) {
+      if(!is.null(dp[[p]])) dp[p] <- "" 
+    }
+  }
+    
   assign("default.params", dp, envir=cache)
   
 }
