@@ -24,8 +24,8 @@ clearDefaults(x)
 
   For \code{setDefaults}, \code{x} needs to be a named list of parameters that you wish 
   to set. \cr \cr
-  For \code{clearDefaults}, \code{x} can be a list or vector of parameter names to you 
-  wish to reset. If \code{x} is missing, all default parameters will be reset.
+  For \code{clearDefaults}, \code{x} can be a list or vector of parameter names you 
+  want to reset. If \code{x} is missing, all default parameters will be reset.
 
 }
 \value{
@@ -45,7 +45,7 @@ Eric Bailey
   Accessing data from EPA's AQDM requires a username and password. Anyone can 
   get a username and password by emailing aqsdatamart@epa.gov and requesting a 
   'QAD User ID'. See 
-  \href{http://www.epa.gov/airdata/tas_Data_Mart_Registration.html#Data_Mart_Registration}{this page} 
+  \href{http://www.epa.gov/airdata/tas_Data_Mart_Registration.html}{this page} 
   for more details.
 
 }
@@ -53,8 +53,8 @@ Eric Bailey
 \seealso{
   \code{\link{getParameters}}
 }
-\examples{
 
+\examples{
   # Set the default username and password for a query.
   setDefaults(list(user = "your_username", pw = "your_password"))
   

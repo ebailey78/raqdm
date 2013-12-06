@@ -20,9 +20,9 @@ getValues(name, quals, stop.on.error = TRUE)
   \code{\link{getParameters}} function but may be useful for other purposes. \cr \cr
   In many cases you cannot query a parameter from AQDM without first narrowing
   your query. For example, you cannot query county names without first selecting
-  a state. This is what the \code{params} argument is for. See examples for a 
+  a state. This is what the \code{quals} argument is for. See examples for a 
   demonstration. \cr \cr
-  If \code{stop.on.error} is \code{TRUE}(the default) providing invalid arguments
+  If \code{stop.on.error} is \code{TRUE} (the default) providing invalid arguments
   will result in an error. If it is \code{FALSE} it will cause the function to 
   return an empty vector.
 }
@@ -41,7 +41,7 @@ getValues(name, quals, stop.on.error = TRUE)
   Accessing data from EPA's AQDM requires a username and password. Anyone can 
   get a username and password by emailing aqsdatamart@epa.gov and requesting a 
   'QAD User ID'. See 
-  \href{http://www.epa.gov/airdata/tas_Data_Mart_Registration.html#Data_Mart_Registration}{this page} 
+  \href{http://www.epa.gov/airdata/tas_Data_Mart_Registration.html}{this page} 
   for more details.
 
 }
@@ -50,11 +50,9 @@ getValues(name, quals, stop.on.error = TRUE)
   \code{\link{getParameters}}
 }
 \examples{
-
   ## Return a data.frame of all counties in Indiana with air quality monitoring data. 
   x <- getValues(name = "county", quals = list(state="18"))
   ## Return a data.frame of all valid parameter classes.
   y <- getValues(name = "pc")
-
 }
 
