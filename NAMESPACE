@@ -1,1 +1,7 @@
-exportPattern("^[[:alpha:]]+")
+export(getParameters,
+       importAQDM,
+       requestAQDM,
+       getDefaults,
+       setDefaults,
+       clearDefaults,
+       getValues)
