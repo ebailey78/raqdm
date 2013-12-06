@@ -45,7 +45,7 @@ Eric Bailey
   Accessing data from EPA's AQDM requires a username and password. Anyone can 
   get a username and password by emailing aqsdatamart@epa.gov and requesting a 
   'QAD User ID'. See 
-  \href{http://www.epa.gov/airdata/tas_Data_Mart_Registration.html#Data_Mart_Registration}{this page} 
+  \href{http://www.epa.gov/airdata/tas_Data_Mart_Registration.html}{this page} 
   for more details.
 
 }

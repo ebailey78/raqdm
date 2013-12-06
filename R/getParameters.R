@@ -13,28 +13,43 @@ getParameters <- function() {
       
       ok = "bad"
       
-      if((tclvalue(v.minlat) != "" & tclvalue(v.maxlat) != "" & tclvalue(v.minlon) != "" & tclvalue(v.maxlon) != "")) ok="good"
-      if((tclvalue(v.minlat) == "" & tclvalue(v.maxlat) == "" & tclvalue(v.minlon) == "" & tclvalue(v.maxlon) == "")) ok="empty"
+      minlat <- tclvalue(eval(parse(text="v.minlat")))
+      maxlat <- tclvalue(eval(parse(text="v.maxlat")))
+      minlon <- tclvalue(eval(parse(text="v.minlon")))
+      maxlon <- tclvalue(eval(parse(text="v.maxlon")))
+      
+      if((minlat != "" & maxlat != "" & minlon != "" & maxlon != "")) ok="good"
+      if((minlat == "" & maxlat == "" & minlon == "" & maxlon == "")) ok="empty"
       
       ok
       
     }
     
-    if(tclvalue(v.user) == "" | tclvalue(v.pw) == "") {
+    bdate <- tclvalue(eval(parse(text = "v.bdate")))
+    edate <- tclvalue(eval(parse(text = "v.edate")))
+    user <- tclvalue(eval(parse(text = "v.user")))
+    pw <- tclvalue(eval(parse(text="v.pw")))
+    pc <- tclvalue(eval(parse(text="v.pc")))
+    param <- tclvalue(eval(parse(text="v.param")))
+    state <- tclvalue(eval(parse(text="v.state")))
+    cbsa <- tclvalue(eval(parse(text="v.cbsa")))
+    csa <- tclvalue(eval(parse(text="v.csa")))
+    
+    if(user == "" | pw == "") {
       valid = FALSE
       tkmessageBox(message = "Please provide both a user name and a password.")
-    } else if(tclvalue(v.bdate) == "" | tclvalue(v.edate) == "") {
+    } else if(bdate == "" | edate == "") {
       valid = FALSE
       tkmessageBox(message = "Please provide a begin date and an end datv.")
-    } else if(tclvalue(v.bdate) > tclvalue(v.edate)) {
+    } else if(bdate > edate) {
       tkmessageBox(message = "The End Date should be after the Begin Date.")
-    } else if(tclvalue(v.pc) == "" & tclvalue(v.param) == "") {
+    } else if(pc == "" & param == "") {
       valid = FALSE
       tkmessageBox(message = "Either a parameter class or a parameter code is required.")
     } else if(checkll() == "bad") {
       valid = FALSE
       tkmessageBox(message = "If lat/lon are provided, all four sides of bounding box must be included.")
-    } else if(checkll() == "empty" & tclvalue(v.state) == "" & tclvalue(v.cbsa) == "" & tclvalue(v.csa) == "") {
+    } else if(checkll() == "empty" & state == "" & cbsa == "" & csa == "") {
       valid = FALSE
       tkmessageBox(message = "Some sort of geographic bounding must be provided.")
     }
@@ -198,15 +213,15 @@ getParameters <- function() {
   tkgrid.configure(e.go, sticky="e")
   
   # Bind actions to keep params list up-to-date
-  tkbind(e.state, "<<ComboboxSelected>>", function() cbSwitch("county", "state"))
-  tkbind(e.county, "<<ComboboxSelected>>", function() cbSwitch("site", c("county", "state")))
-  tkbind(e.pc, "<<ComboboxSelected>>", function() cbSwitch("param", "pc"))
-  tkbind(e.format, "<<ComboboxSelected>>", function() updateEntry("format"))
-  tkbind(e.param, "<<ComboboxSelected>>", function() updateEntry("param"))
-  tkbind(e.site, "<<ComboboxSelected>>", function() updateEntry("site"))
-  tkbind(e.cbsa, "<<ComboboxSelected>>", function() updateEntry("cbsa"))
-  tkbind(e.csa, "<<ComboboxSelected>>", function() updateEntry("csa"))
-  tkbind(e.dur, "<<ComboboxSelected>>", function() updateEntry("dur"))
+  tkbind(eval(parse(text="e.state")), "<<ComboboxSelected>>", function() cbSwitch("county", "state"))
+  tkbind(eval(parse(text="e.county")), "<<ComboboxSelected>>", function() cbSwitch("site", c("county", "state")))
+  tkbind(eval(parse(text="e.pc")), "<<ComboboxSelected>>", function() cbSwitch("param", "pc"))
+  tkbind(eval(parse(text="e.format")), "<<ComboboxSelected>>", function() updateEntry("format"))
+  tkbind(eval(parse(text="e.param")), "<<ComboboxSelected>>", function() updateEntry("param"))
+  tkbind(eval(parse(text="e.site")), "<<ComboboxSelected>>", function() updateEntry("site"))
+  tkbind(eval(parse(text="e.cbsa")), "<<ComboboxSelected>>", function() updateEntry("cbsa"))
+  tkbind(eval(parse(text="e.csa")), "<<ComboboxSelected>>", function() updateEntry("csa"))
+  tkbind(eval(parse(text="e.dur")), "<<ComboboxSelected>>", function() updateEntry("dur"))
   
   tkwait.window(tt)
 

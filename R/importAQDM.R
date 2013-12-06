@@ -43,12 +43,12 @@ importAQDM <- function(x) {
     
   } else if(class(x) == "aqdmparams") {
     
-    if(length(params) > 0) {
+    if(length(x) > 0) {
       
       y <- getForm("https://ofmext.epa.gov/AQDMRS/ws/rawData", .params=x,
                    .opts = list(ssl.verifypeer = FALSE))
       class(y) <- c("AQDM", "data.frame")
-      attr(y, "params") <- params
+      attr(y, "params") <- x
       
     } else {
       
