@@ -7,10 +7,9 @@ assign("default.params", buildDefault, envir = cache)
 rm(buildDefault)
 
 # Returns list of default parameters
-getDefault <- function(param) {
+getDefaults <- function() {
   
-  dp <- get("default.params", cache)
-  return(unlist(dp[param]))
+  return(get("default.params", cache))
   
 }
 
@@ -26,6 +25,8 @@ setDefaults <- function(x) {
   }
   
   assign("default.params", dp, envir=cache)
+  
+  TRUE
   
 }
 
@@ -46,6 +47,8 @@ clearDefaults <- function(x) {
   }
     
   assign("default.params", dp, envir=cache)
+  
+  TRUE
   
 }
 
