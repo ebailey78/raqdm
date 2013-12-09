@@ -15,8 +15,9 @@ requestAQDM(x)
   \item{x}{a list of query parameters to include in the data request}
 }
 \details{
-  If \code{x} is missing the function will automatically call \code{getParameters} which will open a \code{tcltk} dialog to assist in building the parameter list. See \code{getParameters} for more details.\cr\cr
-The \code{x} argument can be built without use of the \code{getParameters} function. It should be a list with the named elements corresponding to the values described in U.S. EPA's \href{http://www.epa.gov/airdata/tas_URL_Query_Construction_Details_rawData.html}{Query Air Data (QAD) User's Guide}. When using this method, it is left to the user to ensure that the parameter list being provided meets with EPA's requirements.
+  If \code{x} is missing the function will automatically call \code{getParameters} which will open a \code{tcltk} dialog to assist in building the parameter list. See \code{\link{getParameters}} for more details.\cr\cr
+  
+The \code{x} argument can be built without use of the \code{getParameters} function. It should be a list with the named elements corresponding to the values described in U.S. EPA's \href{http://www.epa.gov/airdata/tas_URL_Query_Construction_Details_rawData.html}{Query Air Data (QAD) User's Guide}. The class of the list also need to be changed to \code{aqdmparams}. When using this method, it is left to the user to ensure that the parameter list being provided meets with U.S. EPA's requirements.
 }
 
 \value{
@@ -30,12 +31,20 @@ The \code{x} argument can be built without use of the \code{getParameters} funct
 \author{
 Eric Bailey
 }
+\note{
 
+  Accessing data from EPA's AQDM requires a username and password. Anyone can 
+  get a username and password by emailing aqsdatamart@epa.gov and requesting a 
+  'QAD User ID'. See 
+  \href{http://www.epa.gov/airdata/tas_Data_Mart_Registration.html}{this page} 
+  for more details.
+
+}
 \seealso{
 \code{\link{importAQDM}} \cr
 \code{\link{getParameters}}
 }
 \examples{
-  ##Coming Soon
+  \dontrun{x <- requestAQDM()}
 }
 
