@@ -1,8 +1,8 @@
 Package: raqdm
 Type: Package
 Title: Access U.S. EPA Air Quality Data
-Version: 0.1
-Date: 2013-11-18
+Version: 0.5
+Date: 2013-12-09
 Author: Eric Bailey
 Maintainer: Eric Bailey <ebailey@idem.in.gov>
 Description: Provides an interface to import data into R from U.S. EPA's Air Quality Data Mart
