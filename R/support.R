@@ -65,24 +65,25 @@ getValues <- function(name, quals, stop.on.error = TRUE) {
   if(exists(cache.name, cache)) {
     z <- get(cache.name, cache)
   } else {
-    url <- paste0("https://ofmext.epa.gov/AQDMRS/ws/list?name=", name)
+    qurl <- paste0("https://ofmext.epa.gov/AQDMRS/ws/list?name=", name)
     
     if(!missing(quals)) {
       
       qs <- lapply(seq_along(quals), function(i) paste(names(quals)[i], quals[i], sep = "="))
       qs <- paste(qs, collapse = "&")
-      url <- paste(url, qs, sep = "&")
+      qurl <- paste(qurl, qs, sep = "&")
       
     }
     
-    url <- paste0(url, "&resource=rawData")
-    url <- gsub(" ", "%20", url)
-    
-    x <- getURL(url, .opts = list(ssl.verifypeer = FALSE))
+    qurl <- paste0(qurl, "&resource=rawData")
+    qurl <- gsub(" ", "%20", qurl)
+    print(qurl)
+    x <- getURL(qurl, .opts = list(ssl.verifypeer = FALSE))
+    print(x)
     x <- gsub("'", "", x)
-    x <- suppressWarnings(read.table(text = x, sep="\t", colClasses = "character"))
+    if(x != "") x <- suppressWarnings(read.table(text = x, sep="\t", colClasses = "character"))
     
-    if(ncol(x) == 1) {
+    if(ncol(x) <= 1) {
       if(stop.on.error) {
         stop(x[1,1])
       } else {
