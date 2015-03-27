@@ -1,3 +1,34 @@
+#'setAQDMdefaults
+#'
+#'Convienince function for setting default values for querying the Air Quality
+#'Data Mart.
+#'
+#'@param username Your AQDM username (your email address)
+#'@param password Your AQDM password
+#'@param save \code{logical} Should the username/password be saved for future sessions?
+#'
+#'@details
+#'\code{raqdm} creates an R option called \code{raqdmOptions}. This holds a list of
+#'default values for query parameters passed to \code{\list{getAQDMdata}}. You can
+#'use this function to set default values so they don't have to be entered each time
+#'you run a query.
+#'
+#'@return
+#'This function returns \code{TRUE} invisibly if there are no problems.
+#'
+#'@examples
+#'  # Sets raqdm to request criteria pollutant data from Indiana by default.
+#'  setAQDMdefaults(pc = "CRITERIA", state = "18") 
+#'
+#'\dontrun{
+#'  # You can then use a shortened request to get data for specific county and 
+#'  # raqdm will enter the default values automatically.
+#'  x <- getAQDMdata(county = "089", bdate = "20130101", edate = "20130228")
+#'}
+#'
+#'@seealso
+#'  \href{http://www.epa.gov/airdata/toc.html}{Query Air Data (QAD) User's Guide}
+#'  
 #'@export
 setAQDMdefaults <- function(..., save = TRUE) {
   

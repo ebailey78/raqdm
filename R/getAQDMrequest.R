@@ -1,3 +1,6 @@
+#'getAQDMrequest
+#'
+#'
 #'@export
 getAQDMrequest <- function(request, ...) {
   
@@ -8,23 +11,34 @@ getAQDMrequest <- function(request, ...) {
   URL <- paste0(baseURL, "retrieve?id=", request$requestID)
   
   tf <- tempfile()
-  download.file(URL, tf, quiet = TRUE)
+  if(class(try(download.file(URL, tf, quiet = TRUE), silent = TRUE)) != "try-error") {
   
-  if(request$format == "DMCSV") {
-    x <- try(read.csv(tf, ...), silent = FALSE)
-  } else if(request$format == "AQS") {
-    x <- try(read.table(tf, sep = "|", fill = TRUE, ...), silent = FALSE)  
-  } else if(request$format == "AQCSV") {
-    x <- try(read.csv(tf, ...), silent = FALSE)     
+    if(request$format == "DMCSV") {
+      x <- try(read.csv(tf, ...), silent = FALSE)
+    } else if(request$format == "AQS") {
+      x <- try(read.delim(tf, sep = "|", fill = TRUE, comment.char = "", ...), silent = FALSE) 
+      if(class(x) != "try-error") {
+         
+      }
+    } else if(request$format == "AQCSV") {
+      x <- try(read.csv(tf, ...), silent = FALSE)     
+    } else {
+      stop("Unrecognized request format")
+    }
+    
+    if(class(x) == "try-error") {
+      stop("Problem accessing data...")
+      return(FALSE)
+    } else {
+      if(x[nrow(x), 1] == "END OF FILE") {
+        x <- x[-nrow(x), ]
+      }
+      return(x)  
+    }
+    
   } else {
-    stop("Unrecognized request format")
-  }
-  
-  if(class(x) == "try-error") {
-    warning("Data not available yet.")
-    return(FALSE)
-  } else {
-    return(x)  
+    warning("Data not available yet. Try again shortly, or wait for an email from aqdmrs@epa.gov.")
+    return(invisible(FALSE))
   }
   
 }
