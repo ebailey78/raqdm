@@ -3,6 +3,7 @@
 \alias{raqdm}
 \docType{package}
 \title{
+<<<<<<< HEAD
 Access to U.S. EPA's Air Quality Data Mart
 }
 \description{
@@ -48,3 +49,40 @@ Maintainer: Eric Bailey <ebailey@idem.in.gov>
   ## Set the default state parameter to 18 (Indiana) and the county to 089 (Lake).
   \dontrun{setDefault(list(state="18", county="089"))}
 }
+=======
+What the package does (short line)
+~~ package title ~~
+}
+\description{
+More about what it does (maybe more than one line)
+~~ A concise (1-5 lines) description of the package ~~
+}
+\details{
+\tabular{ll}{
+Package: \tab raqdm\cr
+Type: \tab Package\cr
+Version: \tab 1.0\cr
+Date: \tab 2014-02-25\cr
+License: \tab What license is it under?\cr
+}
+~~ An overview of how to use the package, including the most important functions ~~
+}
+\author{
+Who wrote it
+
+Maintainer: Who to complain to <yourfault@somewhere.net>
+~~ The author and/or maintainer of the package ~~
+}
+\references{
+~~ Literature or other references for background information ~~
+}
+~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
+\keyword{ package }
+\seealso{
+~~ Optional links to other man pages, e.g. ~~
+~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+}
+\examples{
+~~ simple examples of the most important functions ~~
+}
+>>>>>>> b7a44f940b9f58a67c12c9c64c2d70117fc0977d

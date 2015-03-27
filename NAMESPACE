@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export(getParameters,
        importAQDM,
        requestAQDM,
@@ -5,3 +6,6 @@ export(getParameters,
        setDefaults,
        clearDefaults,
        getValues)
+=======
+exportPattern("^[[:alpha:]]+")
+>>>>>>> b7a44f940b9f58a67c12c9c64c2d70117fc0977d
