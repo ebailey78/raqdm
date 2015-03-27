@@ -1,20 +1,13 @@
 Package: raqdm
 Type: Package
-<<<<<<< HEAD
-Title: Access U.S. EPA Air Quality Data
-Version: 0.5
-Date: 2013-12-09
-Author: Eric Bailey
-Maintainer: Eric Bailey <ebailey@idem.in.gov>
-Description: Provides an interface to import data into R from U.S. EPA's Air Quality Data Mart
-Depends: RCurl, tcltk
-License: GPL-2
-=======
-Title: What the package does (short line)
-Version: 1.0
-Date: 2014-02-25
+Title: Access data from U.S. EPA's Air Quality Data Mart in R
+Version: 0.1
+Date: 2015-03-25
 Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
->>>>>>> b7a44f940b9f58a67c12c9c64c2d70117fc0977d
+Maintainer: Eric Bailey <ebailey@idem.in.gov>
+Imports:
+    httr
+Description: Provides a direct interface to U.S. EPA's Air Quality Data Mart in R. 
+  Import data directly from EPA into R for further analysis. Requires a username 
+  and passward from EPA.
+License: MIT
