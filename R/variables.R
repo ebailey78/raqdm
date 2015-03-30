@@ -1,0 +1,65 @@
+#'AQDM Variables
+#'
+#'U.S. EPA's AQDM requires that you define 3 things in order to request data from
+#'the service:
+#'\itemize{
+#'  \item Parameter of Interest
+#'  \item Time Period of Interest
+#'  \item Geographic Area of Interest
+#'}
+#'They provide several options to define each of these, but some definition of 
+#'each is required.
+#'
+#'@section Parameter of Interest:
+#'You can define your parameters of interest in two ways:
+#'\describe{
+#'  \item{Paramater Class}{\code{pc} (Parameter Class) allows you to select a set of parameters that you are 
+#'            interested in. (e.g., \code{HAPS} or \code{CRITERIA})}
+#'  \item{Parameter Code}{\code{param} (Parameter Code) allows you to select a specific parameter that you
+#'               are interesting in. (e.g., \code{44201} for Ozone or \code{45201}
+#'               for Benzene)}
+#'} 
+#'
+#'@section Time Period of Interest:
+#'You can define your time period by the sampling date, the change date, or both.
+#'\describe{
+#'  \item{Sampling Date}{Use \code{bdate} (Begin Date) and \code{edate} (End Date)to define
+#'  the beginning and end of the sampling date range in which you are interested.
+#'  AQDM requires a specific format for dates but as long as you use an unambiguous 
+#'  date format \code{raqdm} will convert your dates to the proper format before
+#'  sending the query.}     
+#'  \item{Change Date}{Use \code{cbdate} (Change Begin Date) and \code{cedate} (Change End Date) to define
+#'  the beginning and end of the change date range in which you are interested.
+#'  AQDM requires a specific format for dates but as long as you use an unambiguous 
+#'  date format \code{raqdm} will convert your dates to the proper format before
+#'  sending the query.}
+#'}  
+#'
+#'@section Geographic Area of Interest:
+#'AQDM offers many ways to define a geography of interest.
+#'\describe{
+#'  \item{State/County/Site}{You can specify a \code{state} (State code), 
+#'  \code{county} (County code), and \code{site} (Site ID)
+#'  to define your geographic area of interest. You need all the less-specific variables
+#'  in order to use the more specific variables. So to request data from a specific site
+#'  you must provide \code{state} and \code{county}. To request all data from a specfic
+#'  county, you must provide \code{state} also.}
+#'  \item{CBSA}{You can request all data from a Core-Based Statistical Area using the \code{cbsa} variable.}
+#'  \item{CSA}{You can request all data from a Consolidated Statistical Area using the \code{csa} variable.}
+#'  \item{Latitude/Longitude}{You can request all data from within a geographic bounding
+#'  box. Use \code{minlat} (Minimum Latitude), \code{maxlat} (Maximum Latitude), \code{minlon} 
+#'  (Minimum Longitude), and \code{maxlon} (Maximum Longitude) to define the bounding box. All
+#'  latutudes and longitudes should be in decimal degrees.}
+#'}
+#'
+#'@section Other Variables:
+#'There are several other variables that you can use in your AQDM query.
+#'\describe{
+#'  \item{Username/Password}{\code{user} (Username) and \code{pw} (Password) are required to access AQDM.}
+#'  \item{Output Format}{\code{format} defines the type of output you want. This defaults to \code{DMCSV}. This can 
+#'    affect the type of data you get back from AQDM, though \code{raqdm} will convert all returned values to \code{data.frame}.}
+#'  \item{Duration}{\code{dur} allows you to request a specific a sample duration. If omitted, AQDM will return all available data.}
+#'  \item{FRM Only}{\code{frmonly} allows you to request only FRM/FEM data be returned in the query. If omitted, all available data will be returned.}
+#'}
+#'@name AQDM Variables
+NULL

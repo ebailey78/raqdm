@@ -21,12 +21,12 @@ Convienince function for setting your username and password for accessing the
 Air Quality Data Mart.
 }
 \details{
-You can set user and pw from the \code{\link{setAQDMDefaults}} function also.
+You can set user and pw from the \code{\link{setAQDMdefaults}} function also.
 }
 \examples{
 setAQDMuser("fake@email.com", "pass123")
 }
 \seealso{
-\href{http://www.epa.gov/airdata/toc.html}{Query Air Data(QAD) User's Guide}
+\href{http://www.epa.gov/airdata/toc.html}{Query Air Data (QAD) User's Guide}
 }
 

@@ -3,13 +3,12 @@
 #'Convienince function for setting default values for querying the Air Quality
 #'Data Mart.
 #'
-#'@param username Your AQDM username (your email address)
-#'@param password Your AQDM password
+#'@param \dots name/value pairs for querying AQDM (See \link{AQDM Variables})
 #'@param save \code{logical} Should the username/password be saved for future sessions?
 #'
 #'@details
 #'\code{raqdm} creates an R option called \code{raqdmOptions}. This holds a list of
-#'default values for query parameters passed to \code{\list{getAQDMdata}}. You can
+#'default values for query parameters passed to \code{\link{getAQDMdata}}. You can
 #'use this function to set default values so they don't have to be entered each time
 #'you run a query.
 #'

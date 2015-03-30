@@ -1,3 +1,28 @@
+#'getAQDMlist
+#'
+#'Function for request a list of valid values for a given parameter from
+#'U.S. EPA's Air Quality Data Mart.
+#'
+#'@param name The name of the variable for which you want the list of valid values.
+#'@param \dots name/value pairs for subsetting the requested data. (See details)
+#'
+#'@details
+#'  If the variable requires other variables when querying for data you must provide
+#'  those other variables to \code{getAQDMlist} as well. (e.g., you must provide a \code{state}
+#'  code if \code{name = 'county'}.
+#'  
+#'@return
+#'  Returns a \code{data.frame} with 2 columns. The first column contains the valide code, the
+#'  second column contains a description of that code.
+#'  
+#'@examples
+#'\dontrun{
+#'  #Get a data.frame of counties in Indiana
+#'  counties <- getAQDMList("county", state = "18")
+#'  
+#'  #Get a list of criteria pollutants
+#'  crit <- getAQDMList("param", pc = "CRITERIA")
+#'}
 #'@export
 getAQDMlist <- function(name, ...) {
   

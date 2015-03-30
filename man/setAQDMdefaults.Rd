@@ -9,9 +9,7 @@ setAQDMdefaults(..., save = TRUE)
 \arguments{
 \item{save}{\code{logical} Should the username/password be saved for future sessions?}
 
-\item{username}{Your AQDM username (your email address)}
-
-\item{password}{Your AQDM password}
+\item{\dots}{name/value pairs for querying AQDM (See \link{AQDM Variables})}
 }
 \value{
 This function returns \code{TRUE} invisibly if there are no problems.
@@ -22,7 +20,7 @@ Data Mart.
 }
 \details{
 \code{raqdm} creates an R option called \code{raqdmOptions}. This holds a list of
-default values for query parameters passed to \code{\list{getAQDMdata}}. You can
+default values for query parameters passed to \code{\link{getAQDMdata}}. You can
 use this function to set default values so they don't have to be entered each time
 you run a query.
 }
@@ -37,6 +35,6 @@ you run a query.
 }
 }
 \seealso{
-\href{http://www.epa.gov/airdata/toc.html}{Query Air Data(QAD) User's Guide}
+\href{http://www.epa.gov/airdata/toc.html}{Query Air Data (QAD) User's Guide}
 }
 

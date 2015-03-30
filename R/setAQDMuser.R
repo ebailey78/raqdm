@@ -8,7 +8,7 @@
 #'@param save \code{logical} Should the username/password be saved for future sessions?
 #'
 #'@details
-#'You can set user and pw from the \code{\link{setAQDMDefaults}} function also.
+#'You can set user and pw from the \code{\link{setAQDMdefaults}} function also.
 #'
 #'@return
 #'This function returns \code{TRUE} invisibly if there are no problems.
@@ -22,7 +22,7 @@
 #'@export
 setAQDMuser <- function(username, password, save = FALSE) {
  
-  aqdmDefaults <- getOption(raqdmOptions)
+  aqdmDefaults <- getOption("raqdmOptions")
   
   aqdmDefaults$user <- username
   aqdmDefaults$pw <- password

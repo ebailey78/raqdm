@@ -6,7 +6,26 @@
 \usage{
 getAQDMrequest(request, ...)
 }
+\arguments{
+\item{request}{an object of the type \code{AQDMrequest} produced by \code{\link{getAQDMdata}}.}
+
+\item{\dots}{Additional arguments to be passed to \code{\link{read.table}}.}
+}
+\value{
+A data.frame containing the data requested by \code{\link{getAQDMdata}}.
+}
 \description{
-getAQDMrequest
+Retrieve a data.frame requested with \code{getAQDMdata(synchronous = FALSE)}
+}
+\examples{
+\dontrun{
+ # Send a request to AQDM
+ x <- getAQDMdata(user = "me@email.com", pw = "abc123", param = "44201",
+                  state = 18, county = 89, bdate = "20140101",
+                  edate = "20141231")
+
+ # Once you get an email for EPA saying the data is ready:
+ df <- getAQDMrequest(x)
+}
 }
 

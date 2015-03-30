@@ -6,6 +6,7 @@ baseURL <- "https://ofmext.epa.gov/AQDMRS/ws/"
 
 .onAttach <- function(...) {
 
+  aqdmDefaults = NULL
   load(defaultsPath)
   options("raqdmOptions" = aqdmDefaults)
   
@@ -16,6 +17,75 @@ baseURL <- "https://ofmext.epa.gov/AQDMRS/ws/"
                             "   setAQDMUser()\n\n",
                             "to set your username and password for use with raqdm.")
   }
+  
+}
+
+verifyVariables <- function(params) {
+ 
+  formatDate <- function(d) {
+   
+    if("Date" %in% class(d) | "POSIXt" %in% class(d)) {
+      op <- format(d, "%Y%m%d")
+    } else if(is.character(d)) {
+      if(is.na(as.numeric(d))) {
+        stop("Did not recognize date format.", call. = FALSE)
+      } else if(nchar(d) != 8) {
+        stop("If providing dates in character format please use YYYYMMDD.", call. = FALSE)
+      } else {
+        td <- try(as.Date(d, "%Y%m%d"))
+        if(class(td) == "try-error") {
+          stop("At least one date cannot be interpreted as a date.", call. = FALSE)
+        } else {
+          op <- d
+        }
+      }
+    }
+    
+    return(op)
+    
+  }
+  
+  np <- names(params)
+  
+  if(!("user" %in% np & "pw" %in% np)) {
+    stop("You must provide a username and password to access this feature.", call. = FALSE)
+  }
+  
+  if(!("pc" %in% np | "param" %in% np)) {
+    stop("You must define a parameter of interest with either 'pc' or 'param'.", call. = FALSE)
+  }
+  
+  if(!("bdate" %in% np & "edate" %in% np) & !("cbdate" %in% np & "cedate" %in% np)) {
+    stop("You must define both a start date and end date (either sampling or change) with 'bdate', 'edate', 'cbdate' and/or 'cedate'.", call. = FALSE)
+  }
+  
+  geoOK <- FALSE
+  
+  if("cbsa" %in% np) geoOK = TRUE
+  if("csa" %in% np) geoOK = TRUE
+  if("state" %in% np) geoOK = TRUE
+  if("county" %in% np & "state" %in% np) geoOK = TRUE
+  if("site" %in% np & "county" %in% np & "state" %in% np) geoOK = TRUE
+  if("minlat" %in% np & "maxlat" %in% np & "minlon" %in% np & "maxlon" %in% np) geoOK = TRUE
+  
+  if(!geoOK) {
+    stop("You have not adequately defined your geographic area of interest.", call. = FALSE)
+  }
+  
+  for(i in c("bdate", "edate", "cbdate", "cedate")) {
+    if(i %in% np) {
+      params[[i]] = formatDate(params[[i]])
+    }
+  }  
+  
+  geolength <- list(state = 2, county = 3, site = 4, cbsa = 5, csa = 3)
+  for(i in names(geolength)) {
+    if(i %in% np) {
+      params[[i]] <- sprintf(paste0("%0", geolength[[i]], "i"), as.integer(params[[i]]))    
+    }
+  }
+  
+  return(params)
   
 }
 
