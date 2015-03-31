@@ -1,15 +1,17 @@
 validNames <- c("user", "pw", "state", "county", "site", "pc", "param", 
-                "format", "cbsa", "csa", "duration", "bdate", "edate", "cbdate",
+                "format", "cbsa", "csa", "dur", "bdate", "edate", "cbdate",
                 "cedate", "minlat", "maxlat", "minlon", "maxlon", "frmonly")
+validLists <- c("state", "pc", "param", "format", "cbsa", "csa", "dur")
 defaultsPath <- normalizePath(paste0(system.file(package="raqdm"), "/defaults.rda"))
 baseURL <- "https://ofmext.epa.gov/AQDMRS/ws/"
+aqdm <- new.env()
 
 .onAttach <- function(...) {
 
   aqdmDefaults = NULL
   load(defaultsPath)
   options("raqdmOptions" = aqdmDefaults)
-  
+
   if(is.null(aqdmDefaults$user)) {
     packageStartupMessage("\nU.S. EPA's Air Quaility Data Mart requires free registration. Please visit\n\n",
                             "   http://www.epa.gov/airdata/tas_Data_Mart_Registration.html\n\n",

@@ -21,7 +21,7 @@
 #'@export
 getAQDMrequest <- function(request, ...) {
   
-  if(!(class(request) == "AQDMrequest")) {
+  if(class(request) != "AQDMrequest") {
     stop("You must provide an 'AQDMrequest' object.")
   }
   
@@ -33,9 +33,9 @@ getAQDMrequest <- function(request, ...) {
     if(request$format == "DMCSV") {
       x <- try(read.csv(tf, ...), silent = FALSE)
     } else if(request$format == "AQS") {
-      x <- try(read.delim(tf, sep = "|", fill = TRUE, comment.char = "", ...), silent = FALSE) 
+      x <- try(read.delim(tf, sep = "|", fill = TRUE, comment.char = ""), silent = FALSE) 
       if(class(x) != "try-error") {
-         
+         colnames(x)[1] <- "Transation.Type"
       }
     } else if(request$format == "AQCSV") {
       x <- try(read.csv(tf, ...), silent = FALSE)     

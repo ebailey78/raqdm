@@ -48,20 +48,24 @@ getAQDMdata <- function(..., synchronous = FALSE) {
   
   URL <- constructURL(constructAQDMQueryString(...), type)
   
-  x <- httr::content(httr::GET(URL), type = "text")
+  x <- try(httr::content(httr::GET(URL), type = "text"))
   
-  if(synchronous) {
-
-    stop("Synchronous Requests are currently disabled by EPA")
+  if(class(x) != "try-error") {
     
-  } else {
-    
-    request <- list(requestID = x, type = type, format = format, url = URL)
-    class(request) <- "AQDMrequest"
-    return(request)
+    if(synchronous) {
+  
+      stop("Synchronous Requests are currently disabled by EPA")
+      
+    } else {
+      
+      request <- list(requestID = x, type = type, format = format, url = URL)
+      class(request) <- "AQDMrequest"
+      return(request)
+      
+    }
     
   }
-
+  
 }
 
 constructURL <- function(queryString, type = "rawData") {

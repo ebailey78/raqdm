@@ -11,6 +11,7 @@ EPA has shut down synchronous requests again so I cant get that working yet. But
 ###To Do
 * make sure the data.frames are being created correctly and clean them up a bit.
 * Get synchronous pulls working when EPA reenables that functionality.
+* Create a GUI to make it easier to do pulls
 * ...
 
 You can install with `devtools`:
