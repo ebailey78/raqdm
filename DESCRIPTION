@@ -6,7 +6,8 @@ Date: 2015-03-25
 Author: Who wrote it
 Maintainer: Eric Bailey <ebailey@idem.in.gov>
 Imports:
-    httr
+    httr,
+    tcltk
 Description: Provides a direct interface to U.S. EPA's Air Quality Data Mart in R. 
   Import data directly from EPA into R for further analysis. Requires a username 
   and passward from EPA.

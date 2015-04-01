@@ -1,7 +1,7 @@
 validNames <- c("user", "pw", "state", "county", "site", "pc", "param", 
                 "format", "cbsa", "csa", "dur", "bdate", "edate", "cbdate",
                 "cedate", "minlat", "maxlat", "minlon", "maxlon", "frmonly")
-validLists <- c("state", "pc", "param", "format", "cbsa", "csa", "dur")
+validLists <- c("state", "county", "site", "pc", "param", "format", "cbsa", "csa", "dur")
 defaultsPath <- normalizePath(paste0(system.file(package="raqdm"), "/defaults.rda"))
 baseURL <- "https://ofmext.epa.gov/AQDMRS/ws/"
 aqdm <- new.env()
@@ -90,4 +90,3 @@ verifyVariables <- function(params) {
   return(params)
   
 }
-
