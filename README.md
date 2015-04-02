@@ -1,7 +1,7 @@
 raqdm
 =====
 
-access data from EPA's Air Quality Datamart in R
+access data from EPA's Air Quality Data Mart in R
 
 This is mostly working, but perhaps not super user-friendly. I've written basic documentation but you will
 probably need to know something about AQDM and air monitoring to find this package really useful.
@@ -9,10 +9,10 @@ probably need to know something about AQDM and air monitoring to find this packa
 EPA has shut down synchronous requests again so I cant get that working yet. But asynchronous seems to be working.
 
 ###To Do
-* make sure the data.frames are being created correctly and clean them up a bit.
-* Get synchronous pulls working when EPA reenables that functionality.
-* Create a GUI to make it easier to do pulls
-* ...
+* [ ] make sure the data.frames are being created correctly and clean them up a bit.
+* [ ] Get synchronous pulls working when EPA reenables that functionality.
+* [x] Create a GUI to make it easier to do pulls
+* [ ] ...
 
 You can install with `devtools`:
 
