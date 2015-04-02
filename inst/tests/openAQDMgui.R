@@ -51,13 +51,11 @@ openAQDMgui <- function() {
     
   }
 
-
-
   # Function to subset parameter combobox by pc combobox selection
   paramUpdate <- function() {
     
-    x <- tclvalue(pc)
-    p <- tclvalue(param)
+    x <- tclvalue(values$pc)
+    p <- tclvalue(values$param)
     
     if(x != "") {
       x <- strsplit(x, " - ")[[1]][1]
@@ -68,12 +66,17 @@ openAQDMgui <- function() {
     tkconfigure(widgets$param, values = newParams)
     
     if(!(p %in% newParams)) {
-      tclvalue(param) <- ""
+      tclvalue(values$param) <- ""
     }
     
   }
   
+  
+  
   window <- tktoplevel()
+  tkwm.deiconify(window)
+  tkgrab.set(window)
+  tkfocus(window)
   tkwm.title(window, "AQDM Data Request")
   frame <- ttkframe(window, padding = 10)
   tkpack(frame, expand = TRUE, fill = "both")
@@ -101,6 +104,6 @@ openAQDMgui <- function() {
   cedate <- ttkentry(timeframe, width = 12)
   tkgrid(tklabel(timeframe, text = "Sampling Dates: "), sdate, edate)
   tkgrid(tklabel(timeframe, text = "Change Dates: "), csdate, cedate)
-              
+  tkwait.window(window)
 
 }

@@ -58,7 +58,8 @@ getAQDMdata <- function(..., synchronous = FALSE) {
       
     } else {
       
-      request <- list(requestID = x, type = type, format = format, url = URL)
+      request <- list(requestID = x, type = type, format = format, url = URL, 
+                      time = Sys.time())
       class(request) <- "AQDMrequest"
       return(request)
       

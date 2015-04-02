@@ -47,7 +47,7 @@ setAQDMdefaults <- function(..., save = TRUE) {
     }
   }
   
-  aqdmDefaults <- verifyVariables(aqdmDefaults)
+  aqdmDefaults <- verifyVariables(aqdmDefaults, for.request = FALSE)
   
   options("raqdmOptions" = aqdmDefaults)
   

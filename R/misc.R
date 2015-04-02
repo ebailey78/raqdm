@@ -24,7 +24,7 @@ aqdm <- new.env()
   
 }
 
-verifyVariables <- function(params) {
+verifyVariables <- function(params, for.request = TRUE) {
  
   formatDate <- function(d) {
    
@@ -51,29 +51,33 @@ verifyVariables <- function(params) {
   
   np <- names(params)
   
-  if(!("user" %in% np & "pw" %in% np)) {
-    stop("You must provide a username and password to access this feature.", call. = FALSE)
-  }
+  if(for.request == TRUE) {
+    if(!("user" %in% np & "pw" %in% np)) {
+      stop("You must provide a username and password to access this feature.", call. = FALSE)
+    }
   
-  if(!("pc" %in% np | "param" %in% np)) {
-    stop("You must define a parameter of interest with either 'pc' or 'param'.", call. = FALSE)
-  }
+    if(!("pc" %in% np | "param" %in% np)) {
+      stop("You must define a parameter of interest with either 'pc' or 'param'.", call. = FALSE)
+    }
+    
+    if(!("bdate" %in% np & "edate" %in% np) & !("cbdate" %in% np & "cedate" %in% np)) {
+      stop("You must define both a start date and end date (either sampling or change) with 'bdate', 'edate', 'cbdate' and/or 'cedate'.", call. = FALSE)
+    }
   
-  if(!("bdate" %in% np & "edate" %in% np) & !("cbdate" %in% np & "cedate" %in% np)) {
-    stop("You must define both a start date and end date (either sampling or change) with 'bdate', 'edate', 'cbdate' and/or 'cedate'.", call. = FALSE)
-  }
+    geoOK <- FALSE
+    
+    if("cbsa" %in% np) geoOK = TRUE
+    if("csa" %in% np) geoOK = TRUE
+    if("state" %in% np) geoOK = TRUE
+    if("county" %in% np & "state" %in% np) geoOK = TRUE
+    if("site" %in% np & "county" %in% np & "state" %in% np) geoOK = TRUE
+    if("minlat" %in% np & "maxlat" %in% np & "minlon" %in% np & "maxlon" %in% np) geoOK = TRUE
+    
   
-  geoOK <- FALSE
+    if(!geoOK) {
+      stop("You have not adequately defined your geographic area of interest.", call. = FALSE)
+    }
   
-  if("cbsa" %in% np) geoOK = TRUE
-  if("csa" %in% np) geoOK = TRUE
-  if("state" %in% np) geoOK = TRUE
-  if("county" %in% np & "state" %in% np) geoOK = TRUE
-  if("site" %in% np & "county" %in% np & "state" %in% np) geoOK = TRUE
-  if("minlat" %in% np & "maxlat" %in% np & "minlon" %in% np & "maxlon" %in% np) geoOK = TRUE
-  
-  if(!geoOK) {
-    stop("You have not adequately defined your geographic area of interest.", call. = FALSE)
   }
   
   for(i in c("bdate", "edate", "cbdate", "cedate")) {
@@ -89,6 +93,25 @@ verifyVariables <- function(params) {
     }
   }
   
+  if(!is.null(params$frmonly)) {
+    frm <- params$frmonly
+    if(frm == TRUE | frm %in% c("y", "Y", "yes", "YES", "Yes", "true", "True", "1")) {
+      frm = "y"
+    } else {
+      frm = "n"
+    }
+    params$frmonly = frm
+  }
+
   return(params)
+  
+}
+
+#'@export
+print.AQDMrequest <- function(x, ...) {
+ 
+  op <- paste0("AQDM Request #", x$requestID, " - Requested: ", 
+               x$time, " in ", x$format, " format")
+  print(op)
   
 }
