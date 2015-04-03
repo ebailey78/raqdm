@@ -27,7 +27,9 @@ Use the GUI to make requests, set defaults, or create custom function calls to u
 ```R
   setAQDMdefaults(user = "myemail@example.com", pw = "niftymint56", param = "44201", frmonly = TRUE)
 ```
-This will set defaults for username, password, param, and frmonly. Any request you make can skip these parameters and raqdm will insert them for you. Also, any time you open the GUI these parameters will be entered by default.
+In this example we set defaults for username, password, param, and frmonly. Any request you make can skip these parameters and raqdm will insert them for you and any time you open the GUI these parameters will be entered by default.
+
+raqdm will also save these default values and reload them the next time you load the package, preventing you from having to reenter the same information over and over.
 
 ### Requesting data
 
