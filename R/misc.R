@@ -16,7 +16,7 @@ aqdm <- new.env()
 
 .onAttach <- function(...) {
 
-  packageStartupMessage("\nU.S. EPA's Air Quaility Data Mart requires free registration. Please visit\n\n",
+  packageStartupMessage("\nU.S. EPA's Air Quality Data Mart requires free registration. Please visit\n\n",
                           "   http://www.epa.gov/airdata/tas_Data_Mart_Registration.html\n\n",
                           "for information on registering. Once registered use\n\n",
                           "   setAQDMUser()\n\n",
