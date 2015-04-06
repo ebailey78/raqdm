@@ -25,7 +25,8 @@ Use the GUI to make requests, set defaults, or create custom function calls to u
 `setAQDMdefaults` is used to set default values for any of AQDM's query parameters:
 
 ```R
-  setAQDMdefaults(user = "myemail@example.com", pw = "niftymint56", param = "44201", frmonly = TRUE)
+  setAQDMdefaults(user = "myemail@example.com", pw = "niftymint56", 
+                  param = "44201", frmonly = TRUE)
 ```
 In this example we set defaults for username, password, param, and frmonly. Any request you make can skip these parameters and raqdm will insert them for you and any time you open the GUI these parameters will be entered by default.
 
@@ -41,7 +42,8 @@ Use `getAQDMdata()` with `synchronous = FALSE` to make an asynchronous data requ
 
 ```R
 
-  request <- getAQDMdata(bdate = "20140101", edate = "20140531", state = "18", county = "089")
+  request <- getAQDMdata(bdate = "20140101", edate = "20140531", 
+                         state = "18", county = "089")
   
   ## Once the request is processed on the server:
   
