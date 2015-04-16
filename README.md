@@ -10,7 +10,7 @@ raqdm is an R package for directly accessing data from U.S. EPA's Air Quality Da
 You can install from github with `devtools`:
 
 ```R
-  devtools::install_github("ebailey78/raqdm", ref = "update")
+  devtools::install_github("ebailey78/raqdm")
 ```
 
 ### Getting Access
