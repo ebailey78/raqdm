@@ -90,6 +90,8 @@ constructAQDMQueryString <- function(...) {
   params <- verifyVariables(params)
   
   x <- paste(names(params), params, sep="=", collapse = "&")
+  
+  x <- gsub("&frmonly=n", "", x, fixed = TRUE)
 
   return(x)
   
