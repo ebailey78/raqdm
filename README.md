@@ -130,6 +130,67 @@ These buttons provided access to several ways to use the GUI.
 ```
 will return the request id to `x` after you click **Request Data***.
 
-###More Info
+### Examples
+
+```R
+library(raqdm)
+
+# Set my username and password for the AQDM service
+  setAQDMuser("ebailey@idem.in.gov", "my_password", save = TRUE)
+
+# Set defaults for Wisconsin in 2014
+  setAQDMdefaults(state = "55", bdate = "20140101", edate = "20141231")
+
+# Request 2014 Benzene Data from Wisconsin
+  x <- getAQDMdata(param="45201")
+  
+# Request 2014 NO2 Data from Wisconsin
+  y <- getAQDMdata(param="42602")
+  
+# Request 2014 Ozone Data from Wisconsin
+  z <- getAQDMdata(param="44201")
+  
+# Retrieve the benzene data
+  benz <- getAQDMrequest(x)
+  
+# Retrieve the NO2 data
+  no2 <- getAQDMrequest(y)
+  
+# Retrieve the Ozone data
+  o3 <- getAQDMrequest(z)
+  
+```
+
+```R 
+# Example showing how to loops to do the same thing as previous example
+
+library(raqdm)
+
+# Set my username and password for the AQDM service
+  setAQDMuser("ebailey@idem.in.gov", "my_password", save = TRUE)
+
+# Set defaults for Wisconsin in 2014
+  setAQDMdefaults(state = "55", bdate = "20140101", edate = "20141231")
+
+# Create a vector with the parameters you are interested in
+params <- c("45201", "42602", "44201")
+
+# Use lapply to loop through the params vector, requesting each one from AQDM. A list of requests will be returned to the x variable
+x <- lapply(params, function(p) {
+  return(getAQDMdata(param=p))
+})
+    
+# now loop through the requests to retrieve the data
+y <- lapply(x, function(r) {
+  return(getAQDMrequest(r))
+})
+
+# You could then use do.call and rbind to combine them into one data.frame
+d <- do.call(rbind, y)
+
+```
+  
+
+### More Info
 
 If you have any questions about this package, or you find a error, please contact me at the email address in my profile or open an issue [here](https://github.com/ebailey78/raqdm/issues). 
