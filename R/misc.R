@@ -19,7 +19,7 @@ aqdm <- new.env()
   packageStartupMessage("\nU.S. EPA's Air Quality Data Mart requires free registration. Please visit\n\n",
                           "   http://www.epa.gov/airdata/tas_Data_Mart_Registration.html\n\n",
                           "for information on registering. Once registered use\n\n",
-                          "   setAQDMUser()\n\n",
+                          "   setAQDMuser()\n\n",
                           "to set your username and password for use with raqdm.")
   
 }
