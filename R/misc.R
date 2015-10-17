@@ -3,7 +3,8 @@ validNames <- c("user", "pw", "state", "county", "site", "pc", "param",
                 "cedate", "minlat", "maxlat", "minlon", "maxlon", "frmonly")
 validLists <- c("state", "county", "site", "pc", "param", "format", "cbsa", "csa", "dur")
 defaultsPath <- normalizePath(paste0(system.file(package="raqdm"), "/defaults.rda"))
-baseURL <- "https://ofmext.epa.gov/AQDMRS/ws/"
+#baseURL <- "https://ofmext.epa.gov/AQDMRS/ws/"
+baseURL <- "https://aqs.epa.gov/api/"
 aqdm <- new.env()
 
 .onLoad <- function(...) {
@@ -113,5 +114,32 @@ print.AQDMrequest <- function(x, ...) {
   op <- paste0("AQDM Request #", x$requestID, " - Requested: ", 
                x$time, " in ", x$format, " format")
   print(op)
+  
+}
+
+readFile <- function(file, type, ...) {
+  
+  if(type == "DMCSV") {
+    x <- try(read.csv(file, ...), silent = FALSE)
+  } else if(type == "AQS") {
+    x <- try(read.delim(file, sep = "|", fill = TRUE, comment.char = ""), silent = FALSE) 
+    if(class(x) != "try-error") {
+      colnames(x)[1] <- "Transation.Type"
+    }
+  } else if(type == "AQCSV") {
+    x <- try(read.csv(file, ...), silent = FALSE)     
+  } else {
+    stop("Unrecognized request format")
+  }
+  
+  if(class(x) == "try-error") {
+    stop("Problem accessing data...")
+    return(FALSE)
+  } else {
+    if(x[nrow(x), 1] == "END OF FILE") {
+      x <- x[-nrow(x), ]
+    }
+    return(x)  
+  }
   
 }

@@ -30,28 +30,7 @@ getAQDMrequest <- function(request, ...) {
   tf <- tempfile()
   if(class(try(download.file(URL, tf, quiet = TRUE), silent = TRUE)) != "try-error") {
   
-    if(request$format == "DMCSV") {
-      x <- try(read.csv(tf, ...), silent = FALSE)
-    } else if(request$format == "AQS") {
-      x <- try(read.delim(tf, sep = "|", fill = TRUE, comment.char = ""), silent = FALSE) 
-      if(class(x) != "try-error") {
-         colnames(x)[1] <- "Transation.Type"
-      }
-    } else if(request$format == "AQCSV") {
-      x <- try(read.csv(tf, ...), silent = FALSE)     
-    } else {
-      stop("Unrecognized request format")
-    }
-    
-    if(class(x) == "try-error") {
-      stop("Problem accessing data...")
-      return(FALSE)
-    } else {
-      if(x[nrow(x), 1] == "END OF FILE") {
-        x <- x[-nrow(x), ]
-      }
-      return(x)  
-    }
+    return(readFile(tf, request$format))
     
   } else {
     warning("Data not available yet. Try again shortly, or wait for an email from aqdmrs@epa.gov.")

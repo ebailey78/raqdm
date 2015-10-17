@@ -37,13 +37,14 @@ getAQDMdata <- function(..., synchronous = FALSE) {
     type = "rawData"
   } else {
     type = "rawDataNotify"
-    format <- getOption("raqdmOptions")$format
-    if(!is.null(list(...)$format)) {
-      format <- list(...)$format
-    }
-    if(is.null(format)) {
-      format = "DMCSV"
-    }
+  }
+  
+  format <- getOption("raqdmOptions")$format
+  if(!is.null(list(...)$format)) {
+    format <- list(...)$format
+  }
+  if(is.null(format)) {
+    format = "DMCSV"
   }
   
   URL <- constructURL(constructAQDMQueryString(...), type)
@@ -54,7 +55,9 @@ getAQDMdata <- function(..., synchronous = FALSE) {
     
     if(synchronous) {
   
-      stop("Synchronous Requests are currently disabled by EPA")
+      
+      return(readFile(textConnection(x), format))
+      #stop("Synchronous Requests are currently disabled by EPA")
       
     } else {
       

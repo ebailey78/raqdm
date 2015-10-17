@@ -18,10 +18,10 @@
 #'@examples
 #'\dontrun{
 #'  #Get a data.frame of counties in Indiana
-#'  counties <- getAQDMList("county", state = "18")
+#'  counties <- getAQDMlist("county", state = "18")
 #'  
 #'  #Get a list of criteria pollutants
-#'  crit <- getAQDMList("param", pc = "CRITERIA")
+#'  crit <- getAQDMlist("param", pc = "CRITERIA")
 #'}
 #'@export
 getAQDMlist <- function(name, ...) {
@@ -44,7 +44,7 @@ getAQDMlist <- function(name, ...) {
       }    
       
       quals <- paste(names(qualifiers), qualifiers, sep = "=", collapse = "&")
-      URL <- paste0("https://ofmext.epa.gov/AQDMRS/ws/list?name=", name, "&", quals, "&resource=rawData")
+      URL <- paste0(baseURL, "list?name=", name, "&", quals, "&resource=rawData")
       
       f <- file()
       if(class(try(cat(httr::content(httr::GET(URL)), file = f), silent = TRUE)) != "try-error") { 
